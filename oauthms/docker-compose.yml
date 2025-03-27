@@ -1,0 +1,25 @@
+services:
+  postgres:
+    container_name: oauthms-postgres
+    image: postgres:latest
+    ports:
+      - "5544:5432"
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: oauthmsdb
+    networks:
+      - oauthms-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+networks:
+  oauthms-network:
+
+volumes:
+  postgres-data:

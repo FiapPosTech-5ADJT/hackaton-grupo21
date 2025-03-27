@@ -10,7 +10,15 @@
         <option value="$PROJECT_DIR$/pacientems/pom.xml" />
         <option value="$PROJECT_DIR$/apigatewayms/pom.xml" />
         <option value="$PROJECT_DIR$/prescricaoms/pom.xml" />
+        <option value="$PROJECT_DIR$/oauthms/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/pacientems/pom.xml" />
+        <option value="$PROJECT_DIR$/prescricaoms/pom.xml" />
+        <option value="$PROJECT_DIR$/prontuarioms/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21_PREVIEW" project-jdk-name="21" project-jdk-type="JavaSDK">

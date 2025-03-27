@@ -1,0 +1,1 @@
+INSERT INTO establishment (nome, endereco, cnpj) VALUES ( 'Estabelecimento 1', 'Rua Exemplo, 123', '123123123');
