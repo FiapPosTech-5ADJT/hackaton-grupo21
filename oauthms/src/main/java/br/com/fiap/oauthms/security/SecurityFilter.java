@@ -36,8 +36,8 @@ public class SecurityFilter extends OncePerRequestFilter {
 
             if (login != null && !login.isEmpty()) {
                 UserDetails user = userDetailsService.loadUserByUsername(login);
-
                 if (user != null) {
+                    System.out.println("Role do usuário: " + user.getAuthorities());
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -47,6 +47,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
+
 
 
     private String recoverToken(HttpServletRequest request) {

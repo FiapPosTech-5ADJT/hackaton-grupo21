@@ -28,6 +28,7 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("auth-api")
                     .withSubject(users.getEmail())
+                    .withClaim("role", users.getRole().name())  // Adiciona a role no token
                     .withExpiresAt(genExpirationDate())
                     .sign(Algorithm.HMAC256(secret));
         } catch (JWTCreationException exception) {

@@ -17,7 +17,6 @@
       <set>
         <option value="$PROJECT_DIR$/pacientems/pom.xml" />
         <option value="$PROJECT_DIR$/prescricaoms/pom.xml" />
-        <option value="$PROJECT_DIR$/prontuarioms/pom.xml" />
       </set>
     </option>
   </component>

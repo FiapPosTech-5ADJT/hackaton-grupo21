@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -21,6 +23,10 @@ public class UserService {
         users = new Users(data.name(), data.email(), data.password(), establishment, data.role());
         users.setPassword(new BCryptPasswordEncoder().encode(users.getPassword()));
         return userRepository.save(users);
+    }
+
+    public List<Users> getUsers() {
+        return userRepository.findAll();
     }
 
 }

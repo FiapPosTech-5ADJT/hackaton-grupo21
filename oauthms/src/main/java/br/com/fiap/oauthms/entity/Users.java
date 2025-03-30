@@ -28,12 +28,8 @@ public class Users implements UserDetails {
     private Establishment establishment;
 
     @Override
-    //TODO implementar o método getAuthorities mais detalhado
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.role == Roles.ADMIN || this.role == Roles.PROFISSIONAL_ATENDIMENTO) {
-            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        }
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
 
     @Override
