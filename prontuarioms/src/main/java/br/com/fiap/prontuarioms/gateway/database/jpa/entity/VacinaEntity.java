@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "Vacina")
 @Getter
@@ -28,5 +30,5 @@ public class VacinaEntity {
     private String descricao;
     private String lote;
     private String fabricante;
-    private String dataAplicacao;
+    private LocalDateTime dataAplicacao;
 }

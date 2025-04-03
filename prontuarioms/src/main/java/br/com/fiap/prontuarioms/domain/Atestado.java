@@ -73,4 +73,16 @@ public class Atestado {
     public boolean possuiAfastamentoAtivo() {
         return this.diasAfastamento > 0 && LocalDateTime.now().isBefore(dataInicio.plusDays(diasAfastamento));
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
+    }
 }

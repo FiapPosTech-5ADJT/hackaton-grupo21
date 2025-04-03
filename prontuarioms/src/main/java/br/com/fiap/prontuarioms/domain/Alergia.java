@@ -33,4 +33,24 @@ public class Alergia {
         this.descricaoConsequencias = descricaoConsequencias;
         this.dataCadastro = LocalDateTime.now();
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public String getDescricaoAlergia() {
+        return descricaoAlergia;
+    }
+
+    public String getDescricaoConsequencias() {
+        return descricaoConsequencias;
+    }
+
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
+    }
 }

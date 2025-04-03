@@ -10,7 +10,7 @@ public class Alerta {
     private LocalDateTime dataInicio;
     private LocalDateTime dataFim;
 
-    public Alerta(String cpf, Long id, String descricao, LocalDateTime dataCadastro, LocalDateTime dataInicio, LocalDateTime dataFim) {
+    public Alerta(Long id, String cpf, String descricao, LocalDateTime dataCadastro, LocalDateTime dataInicio, LocalDateTime dataFim) {
         if (cpf == null || cpf.isEmpty()){
             throw new IllegalArgumentException("CPF não pode ser nulo ou vazio");
         }
@@ -67,5 +67,13 @@ public class Alerta {
 
     public LocalDateTime getDataFim() {
         return dataFim;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCpf() {
+        return cpf;
     }
 }

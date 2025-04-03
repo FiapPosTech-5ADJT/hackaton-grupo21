@@ -1,5 +1,7 @@
 package br.com.fiap.prontuarioms.domain;
 
+import java.time.LocalDateTime;
+
 public class Vacina {
 
     private Long id;
@@ -7,9 +9,9 @@ public class Vacina {
     private String descricao;
     private String lote;
     private String fabricante;
-    private String dataAplicacao;
+    private LocalDateTime dataAplicacao;
 
-    public Vacina(Long id, String cpf, String descricao, String lote, String fabricante, String dataAplicacao) {
+    public Vacina(Long id, String cpf, String descricao, String lote, String fabricante, LocalDateTime dataAplicacao) {
         setCpf(cpf);
         setDescricao(descricao);
         setLote(lote);
@@ -59,8 +61,8 @@ public class Vacina {
         this.fabricante = fabricante;
     }
 
-    private void setDataAplicacao(String dataAplicacao) {
-        if (dataAplicacao == null || dataAplicacao.isEmpty()) {
+    private void setDataAplicacao(LocalDateTime dataAplicacao) {
+        if (dataAplicacao == null) {
             throw new IllegalArgumentException("Data de aplicação não pode ser nula ou vazia");
         }
         this.dataAplicacao = dataAplicacao;
@@ -78,7 +80,15 @@ public class Vacina {
         return fabricante;
     }
 
-    public String getDataAplicacao() {
+    public LocalDateTime getDataAplicacao() {
         return dataAplicacao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCpf() {
+        return cpf;
     }
 }
