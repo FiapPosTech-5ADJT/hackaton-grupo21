@@ -38,10 +38,20 @@ public class Alerta {
         this.dataFim = dataFim;
     }
 
-    public Alerta(String cpf, String descricao) {
+    public Alerta(String cpf, String descricao, LocalDateTime dataInicio, LocalDateTime dataFim) {
         this.cpf = cpf;
         this.descricao = descricao;
-        this.dataInicio = LocalDateTime.now();
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.dataCadastro = LocalDateTime.now();
+    }
+
+    public Alerta(Long id, String cpf, String descricao, LocalDateTime dataInicio, LocalDateTime dataFim) {
+        this.id = id;
+        this.cpf = cpf;
+        this.descricao = descricao;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
         this.dataCadastro = LocalDateTime.now();
     }
 
