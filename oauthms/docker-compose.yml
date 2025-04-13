@@ -3,7 +3,7 @@ services:
     container_name: oauthms-postgres
     image: postgres:latest
     ports:
-      - "5544:5432"
+      - "5542:5432"
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: secret
