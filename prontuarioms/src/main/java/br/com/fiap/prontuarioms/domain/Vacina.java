@@ -20,7 +20,7 @@ public class Vacina {
         this.id = id;
     }
 
-    public Vacina(String cpf, String descricao, String lote, String fabricante, String dataAplicacao) {
+    public Vacina(String cpf, String descricao, String lote, String fabricante, LocalDateTime dataAplicacao) {
         setCpf(cpf);
         setDescricao(descricao);
         setLote(lote);

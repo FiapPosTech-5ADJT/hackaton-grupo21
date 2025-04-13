@@ -36,6 +36,24 @@ public class Atestado {
         this.diasAfastamento = diasAfastamento;
     }
 
+    public Atestado(Long id, String cpf, String descricao, Long diasAfastamento) {
+        this.id = id;
+        if (cpf == null || cpf.isEmpty()){
+            throw new IllegalArgumentException("CPF não pode ser nulo ou vazio");
+        }
+        if (descricao == null || descricao.isEmpty()){
+            throw new IllegalArgumentException("Descrição não pode ser nula ou vazia");
+        }
+        if (diasAfastamento == null){
+            throw new IllegalArgumentException("Dias de afastamento não pode ser nulo");
+        }
+        this.cpf = cpf;
+        this.descricao = descricao;
+        this.diasAfastamento = diasAfastamento;
+        this.dataInicio = LocalDateTime.now();
+        this.dataCadastro = LocalDateTime.now();
+    }
+
     public Atestado(String cpf, String descricao, Long diasAfastamento) {
         this.cpf = cpf;
         this.descricao = descricao;
