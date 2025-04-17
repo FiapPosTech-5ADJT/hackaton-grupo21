@@ -6,6 +6,7 @@ import br.gov.susconnect.exames.application.service.TipoExameService;
 import br.gov.susconnect.exames.domain.model.TipoExame;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestController
-@RequestMapping("/api/tipos-exame")
+@RequestMapping("/api/exames/tipos-exame")
 @Tag(name = "Tipos Exames", description = "Operações relacionadas aos tipos de exames")
 public class TipoExameController {
 
@@ -28,7 +30,8 @@ public class TipoExameController {
   }
 
   @GetMapping
-  public ResponseEntity<List<TipoExameResponseDTO>> listarTiposExame() {
+  public ResponseEntity<List<TipoExameResponseDTO>> listarTiposExame(@RequestHeader("user-id") String userId) {
+    log.info(userId);
     List<TipoExameResponseDTO> tiposExameDTO = tipoExameService.listarTodos().stream()
       .map(tipoExameService::convertToDTO)
       .collect(Collectors.toList());
