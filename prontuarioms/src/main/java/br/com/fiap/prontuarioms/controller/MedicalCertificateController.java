@@ -26,26 +26,26 @@ public class MedicalCertificateController {
     private final GetDataMedicalCertificateUseCase getDataUseCase;
 
     @PostMapping
-    public ResponseEntity<Atestado> create(MedicalCertificateCreateRequestDto dto) {
+    public ResponseEntity<Atestado> create(@RequestBody MedicalCertificateCreateRequestDto dto) {
         Atestado atestado = MedicalCertificateConverter.toDomain(dto);
         return ResponseEntity.ok(createUseCase.execute(atestado));
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(MedicalCertificateUpdateRequestDto dto) {
+    public ResponseEntity<Void> update(@RequestBody MedicalCertificateUpdateRequestDto dto) {
         Atestado atestado = MedicalCertificateConverter.toDomain(dto);
         updateUseCase.execute(atestado);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         deleteUseCase.execute(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<Atestado>> getAll(String cpf) {
+    @GetMapping("/{cpf}")
+    public ResponseEntity<List<Atestado>> getAll(@PathVariable String cpf) {
         return ResponseEntity.ok(getDataUseCase.execute(cpf));
     }
 }

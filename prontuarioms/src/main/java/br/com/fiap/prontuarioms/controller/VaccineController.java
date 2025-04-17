@@ -2,6 +2,7 @@ package br.com.fiap.prontuarioms.controller;
 
 import br.com.fiap.prontuarioms.domain.Vacina;
 import br.com.fiap.prontuarioms.dto.VaccineCreateRequestDto;
+import br.com.fiap.prontuarioms.dto.VaccineUpdateRequestDto;
 import br.com.fiap.prontuarioms.dto.converter.VaccineConverter;
 import br.com.fiap.prontuarioms.usecase.vacina.CreateVaccineUseCase;
 import br.com.fiap.prontuarioms.usecase.vacina.DeleteVaccineUseCase;
@@ -25,25 +26,26 @@ public class VaccineController {
     private final GetDataVaccineUseCase getDataUseCase;
 
     @PostMapping
-    public ResponseEntity<Vacina> create(VaccineCreateRequestDto dto) {
+    public ResponseEntity<Vacina> create(@RequestBody VaccineCreateRequestDto dto) {
         Vacina vacina = VaccineConverter.toDomain(dto);
         return ResponseEntity.ok(createUseCase.execute(vacina));
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(Vacina vacina) {
+    public ResponseEntity<Void> update(@RequestBody VaccineUpdateRequestDto dto) {
+        Vacina vacina = VaccineConverter.toDomain(dto);
         updateUseCase.execute(vacina);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         deleteUseCase.execute(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<Vacina>> getAll(String cpf) {
+    @GetMapping("/{cpf}")
+    public ResponseEntity<List<Vacina>> getAll(@PathVariable String cpf) {
         return ResponseEntity.ok(getDataUseCase.execute(cpf));
     }
 }

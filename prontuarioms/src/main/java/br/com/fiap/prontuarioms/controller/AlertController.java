@@ -26,26 +26,26 @@ public class AlertController {
     private final GetDataAlertUseCase getDataAlertUseCase;
 
     @PostMapping
-    public ResponseEntity<Alerta> createAlert(AlertCreateRequestDto dto) {
+    public ResponseEntity<Alerta> createAlert(@RequestBody AlertCreateRequestDto dto) {
         Alerta alerta = AlertConverter.toDomain(dto);
         return ResponseEntity.ok(createAlertUseCase.execute(alerta));
     }
 
     @PutMapping
-    public ResponseEntity<Void> updateAlert(AlertUpdateRequestDto dto) {
+    public ResponseEntity<Void> updateAlert(@RequestBody AlertUpdateRequestDto dto) {
         Alerta alerta = AlertConverter.toDomain(dto);
         updateAlertUseCase.execute(alerta);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteAlert(Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAlert(@PathVariable Long id) {
         deleteAlertUseCase.execute(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<Alerta>> getAlerts(String cpf) {
+    @GetMapping("/{cpf}")
+    public ResponseEntity<List<Alerta>> getAlerts(@PathVariable String cpf) {
         return ResponseEntity.ok(getDataAlertUseCase.execute(cpf));
     }
 }

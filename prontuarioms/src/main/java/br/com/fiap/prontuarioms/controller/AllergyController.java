@@ -26,27 +26,27 @@ public class AllergyController {
     private final GetDataAllergyUseCase getDataAllergyUseCaseUseCase;
 
     @PostMapping
-    public ResponseEntity<Alergia> createAllergy(AllergyCreateRequestDto allergyCreateRequestDto) {
+    public ResponseEntity<Alergia> createAllergy(@RequestBody AllergyCreateRequestDto allergyCreateRequestDto) {
         Alergia alergia =  AllergyConverter.toDomain(allergyCreateRequestDto);
         Alergia created = createAllergyUseCase.execute(alergia);
         return ResponseEntity.ok(created);
     }
 
     @PutMapping
-    public ResponseEntity<Void> updateAllergy(AllergyUpdateRequestDto allergyUpdateRequestDto) {
+    public ResponseEntity<Void> updateAllergy(@RequestBody AllergyUpdateRequestDto allergyUpdateRequestDto) {
         Alergia alergia = AllergyConverter.toDomain(allergyUpdateRequestDto);
         updateAllergyUseCase.execute(alergia);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteAllergy(Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAllergy(@PathVariable Long id) {
         deleteAllergyUseCase.execute(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<Alergia>> getAllergies(String cpf) {
+    @GetMapping("/{cpf}")
+    public ResponseEntity<List<Alergia>> getAllergies(@PathVariable String cpf) {
         return ResponseEntity.ok(getDataAllergyUseCaseUseCase.execute(cpf));
     }
 }

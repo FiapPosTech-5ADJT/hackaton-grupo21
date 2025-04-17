@@ -1,0 +1,44 @@
+services:
+  app:
+    container_name: prontuarioms
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/prontuariodb
+      DB_USERNAME: myuser
+      DB_PASSWORD: secret
+      DB_PASSWORD_H2: admin
+      RABBIT_PASSWORD: guest
+    networks:
+      - prontuarioms-network
+
+  postgres:
+    container_name: prontuariodb
+    image: postgres:latest
+    ports:
+      - "5544:5432"
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: prontuariodb
+    networks:
+      - prontuarioms-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+networks:
+  prontuarioms-network:
+
+volumes:
+  postgres-data:

@@ -1,15 +1,15 @@
 services:
   postgres:
-    container_name: oauthms-postgres
+    container_name: pacientedb
     image: postgres:latest
     ports:
-      - "5542:5432"
+      - "5545:5432"
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: secret
-      POSTGRES_DB: oauthmsdb
+      POSTGRES_DB: pacientedb
     networks:
-      - oauthms-network
+      - pacientems-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U myuser"]
       interval: 10s
@@ -19,7 +19,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
 networks:
-  oauthms-network:
+  pacientems-network:
 
 volumes:
   postgres-data:
