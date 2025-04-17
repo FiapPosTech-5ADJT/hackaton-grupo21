@@ -1,5 +1,6 @@
 package br.com.fiap.prontuarioms.controller;
 
+import br.com.fiap.prontuarioms.controller.docs.MedicalCertificateControllerDocs;
 import br.com.fiap.prontuarioms.domain.Atestado;
 import br.com.fiap.prontuarioms.dto.MedicalCertificateCreateRequestDto;
 import br.com.fiap.prontuarioms.dto.MedicalCertificateUpdateRequestDto;
@@ -15,37 +16,38 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/atestado")
 @AllArgsConstructor
-public class MedicalCertificateController {
+public class MedicalCertificateController implements MedicalCertificateControllerDocs {
 
     private final CreateMedicalCertificateUseCase createUseCase;
     private final UpdateMedicalCertificateUseCase updateUseCase;
     private final DeleteMedicalCertificateUseCase deleteUseCase;
     private final GetDataMedicalCertificateUseCase getDataUseCase;
 
-    @PostMapping
+    @Override
     public ResponseEntity<Atestado> create(@RequestBody MedicalCertificateCreateRequestDto dto) {
         Atestado atestado = MedicalCertificateConverter.toDomain(dto);
         return ResponseEntity.ok(createUseCase.execute(atestado));
     }
 
-    @PutMapping
+    @Override
     public ResponseEntity<Void> update(@RequestBody MedicalCertificateUpdateRequestDto dto) {
         Atestado atestado = MedicalCertificateConverter.toDomain(dto);
         updateUseCase.execute(atestado);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/{id}")
+    @Override
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         deleteUseCase.execute(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{cpf}")
+    @Override
     public ResponseEntity<List<Atestado>> getAll(@PathVariable String cpf) {
         return ResponseEntity.ok(getDataUseCase.execute(cpf));
     }
 }
+
